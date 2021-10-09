@@ -15,9 +15,9 @@ RMM::~RMM() {
 
 void* RMM::allocate(int size_in_bytes) {
     int temp_offset = free_offset;
-    free_offset += size_in_bytes;
     if (free_offset + size_in_bytes > regionSize)
         return nullptr;
+    free_offset += size_in_bytes;
     return (char*)pool + temp_offset;
 }
 
