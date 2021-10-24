@@ -3,10 +3,10 @@
 
 using namespace std;
 
-RMM::RMM(int size_in_MB) {
-    regionSize = size_in_MB*1024*1024;
-    pool = new char[size_in_MB*1024*1024];
+RMM::RMM(int size_in_bytes) {
+    pool = new char[size_in_bytes];
     free_offset = 0;
+    pool_size = size_in_bytes;
 }
 
 RMM::~RMM() {
@@ -15,7 +15,7 @@ RMM::~RMM() {
 
 void* RMM::allocate(int size_in_bytes) {
     int temp_offset = free_offset;
-    if (free_offset + size_in_bytes > regionSize)
+    if (free_offset + size_in_bytes > pool_size)
         return nullptr;
     free_offset += size_in_bytes;
     return (char*)pool + temp_offset;
@@ -26,5 +26,5 @@ void RMM::reset() {
 }
 
 void RMM::print_status() {
-    cout << endl << "Region - Free bytes remaining in the pool: " << regionSize - free_offset << endl << endl;
+    cout << endl << "Region - Free bytes remaining in the pool: " << pool_size - free_offset << endl << endl;
 }
