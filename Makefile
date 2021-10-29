@@ -10,6 +10,7 @@ LDFLAGS =
 # Makefile settings - Can be customized.
 TESTAPP1 = TestArrays
 TESTAPP2 = TestObjects
+TESTAPP3 = TestNestedRegion
 EXT = .cpp
 SRCDIR = src
 OBJDIR = obj
@@ -26,13 +27,16 @@ DELOBJ = $(OBJ)
 ####################### Targets beginning here #########################
 ########################################################################
 
-all: $(TESTAPP1) $(TESTAPP2)
+all: $(TESTAPP1) $(TESTAPP2) $(TESTAPP3)
 
 # Builds the apps
 $(TESTAPP1): obj/RMM.o obj/TestArrays.o
 	$(CC) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 $(TESTAPP2): obj/RMM.o obj/TestObjects.o
+	$(CC) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+
+$(TESTAPP3): obj/RMM.o obj/TestNestedRegions.o
 	$(CC) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 
