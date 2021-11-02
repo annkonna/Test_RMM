@@ -11,6 +11,8 @@ LDFLAGS =
 TESTAPP1 = TestArrays
 TESTAPP2 = TestObjects
 TESTAPP3 = TestNestedRegion
+TESTAPP5 = TestMultipleArrays
+TESTAPP4 = TestMultipleObjects
 EXT = .cpp
 SRCDIR = src
 OBJDIR = obj
@@ -27,7 +29,7 @@ DELOBJ = $(OBJ)
 ####################### Targets beginning here #########################
 ########################################################################
 
-all: $(TESTAPP1) $(TESTAPP2) $(TESTAPP3)
+all: $(TESTAPP1) $(TESTAPP2) $(TESTAPP3) $(TESTAPP4) $(TESTAPP5)
 
 # Builds the apps
 $(TESTAPP1): obj/RMM.o obj/TestArrays.o
@@ -39,6 +41,11 @@ $(TESTAPP2): obj/RMM.o obj/TestObjects.o
 $(TESTAPP3): obj/RMM.o obj/TestNestedRegions.o
 	$(CC) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
+$(TESTAPP4): obj/RMM.o obj/TestMultipleObjects.o
+	$(CC) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+
+$(TESTAPP5): obj/RMM.o obj/TestMultipleArrays.o
+	$(CC) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 # Creates the dependecy rules
 # %.d: $(SRCDIR)/%$(EXT)
