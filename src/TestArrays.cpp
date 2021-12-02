@@ -26,7 +26,7 @@ int main() {
         rmm.reset();
         rmm.print_status();
     }
-
+    cout << "Nested region count = " << rmm.get_nested_count() << endl;
     return 0;
 }
 

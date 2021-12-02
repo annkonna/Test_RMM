@@ -38,7 +38,7 @@ int main() {
 
     cout << "Top Level Region Status: " << endl;
     rmm.print_status();
-    
+    cout << "Nested region count = " << rmm.get_nested_count() << endl;
     delete rmm_child;
 
     // Reset the top-level region.
